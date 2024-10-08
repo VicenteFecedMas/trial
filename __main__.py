@@ -24,7 +24,7 @@ def main(args):
     buf.close()
 
     # Create an HTML image tag
-    html_img = f'<img src="data:image/png;base64,{image_base64}" alt="Sine Wave Plot"/>'
+    html_img = f'<img src="data:image/png;base64,{image_base64}" alt="Sine Wave Plot" width="500"/>'
 
     return {
           "headers": { 'Content-Type': 'text/html; charset=utf-8' },
