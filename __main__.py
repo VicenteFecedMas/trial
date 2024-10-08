@@ -12,5 +12,5 @@ def main(params):
         "headers": {
             "Content-Type": "text/plain;charset=utf-8",
             },
-        "body": lorem.words(words),
+        "body": "this is an update",
     }
