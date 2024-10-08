@@ -1,39 +1,32 @@
-import numpy as np
-
-"""
-import os
 import matplotlib.pyplot as plt
+import numpy as np
 import base64
 from io import BytesIO
 
-def generate_dummy_image():
-    # Create a simple dummy image using matplotlib
-    plt.figure(figsize=(5, 5))
+def main(args):
+    # Step 1: Generate a plot
     x = np.linspace(0, 10, 100)
     y = np.sin(x)
+
+    plt.figure()
     plt.plot(x, y)
-    plt.title('Dummy Image')
-    plt.xlabel('x-axis')
-    plt.ylabel('y-axis')
-    
-    # Save the figure to a BytesIO object
+    plt.title('Sine Wave')
+    plt.xlabel('X-axis')
+    plt.ylabel('Y-axis')
+
+    # Step 2: Save the plot to a BytesIO object
     buf = BytesIO()
     plt.savefig(buf, format='png')
-    buf.seek(0)  # Rewind the buffer to the beginning
-    return buf.getvalue()
-"""
+    buf.seek(0)
 
-import os
-import base64
+    # Step 3: Encode the image in base64
+    image_base64 = base64.b64encode(buf.read()).decode('utf-8')
+    buf.close()
 
-def main(args):
-    responseBody=str(np.random.rand())
-    encodedResponse=base64.encodebytes(responseBody.encode()).decode("utf-8").strip()
+    # Create an HTML image tag
+    html_img = f'<img src="data:image/png;base64,{image_base64}" alt="Sine Wave Plot"/>'
+
     return {
-        "headers": {
-            "Content-Type": "text/plain",
-        },
-
-        "statusCode": 200,
-        "body": encodedResponse,
-    }
+          "headers": { 'Content-Type': 'text/html; charset=utf-8' },
+          "body": html_img
+       }
