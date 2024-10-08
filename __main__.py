@@ -1,16 +1,36 @@
-# use third-party 'lorem-ipsum' package to generate random words
-from lorem_text import lorem
+import os
+import matplotlib.pyplot as plt
+import numpy as np
+import base64
+from io import BytesIO
 
-# The `main` function is the entry-point into the function.
-# It has one optional argument, which carries all the 
-# parameters the function was invoked with.
-def main(params):
-    words = 10
+def generate_dummy_image():
+    # Create a simple dummy image using matplotlib
+    plt.figure(figsize=(5, 5))
+    x = np.linspace(0, 10, 100)
+    y = np.sin(x)
+    plt.plot(x, y)
+    plt.title('Dummy Image')
+    plt.xlabel('x-axis')
+    plt.ylabel('y-axis')
+    
+    # Save the figure to a BytesIO object
+    buf = BytesIO()
+    plt.savefig(buf, format='png')
+    buf.seek(0)  # Rewind the buffer to the beginning
+    return buf.getvalue()
 
-    # since functions are invoked through http(s), we return an HTTP response
+def main(args):
+    # Generate a dummy image
+    image_data = generate_dummy_image()
+    
+    # Encode the image data in Base64
+    encoded_image = base64.b64encode(image_data).decode('utf-8')
+    
     return {
         "headers": {
-            "Content-Type": "text/plain;charset=utf-8",
-            },
-        "body": "this is an update",
+            "Content-Type": "image/png",  # Specify the content type for an image
+        },
+        "statusCode": 200,
+        "body": encoded_image,  # Base64 encoded image data
     }
