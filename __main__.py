@@ -1,6 +1,8 @@
+import numpy as np
+
+"""
 import os
 import matplotlib.pyplot as plt
-import numpy as np
 import base64
 from io import BytesIO
 
@@ -19,18 +21,19 @@ def generate_dummy_image():
     plt.savefig(buf, format='png')
     buf.seek(0)  # Rewind the buffer to the beginning
     return buf.getvalue()
+"""
+
+import os
+import base64
 
 def main(args):
-    # Generate a dummy image
-    image_data = np.random.rand()
-    
-    # Encode the image data in Base64
-    #encoded_image = base64.b64encode(image_data).decode('utf-8')
-    
+    responseBody=str(np.random.rand())
+    encodedResponse=base64.encodebytes(responseBody.encode()).decode("utf-8").strip()
     return {
         "headers": {
-            "Content-Type": "text/plain",  # Specify the content type for an image
+            "Content-Type": "text/plain",
         },
+
         "statusCode": 200,
-        "body": str(image_data),  # Base64 encoded image data
+        "body": encodedResponse,
     }
