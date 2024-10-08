@@ -22,15 +22,15 @@ def generate_dummy_image():
 
 def main(args):
     # Generate a dummy image
-    image_data = generate_dummy_image()
+    image_data = np.random.rand()
     
     # Encode the image data in Base64
-    encoded_image = base64.b64encode(image_data).decode('utf-8')
+    #encoded_image = base64.b64encode(image_data).decode('utf-8')
     
     return {
         "headers": {
-            "Content-Type": "image/png",  # Specify the content type for an image
+            "Content-Type": "text/plain",  # Specify the content type for an image
         },
         "statusCode": 200,
-        "body": encoded_image,  # Base64 encoded image data
+        "body": str(image_data),  # Base64 encoded image data
     }
