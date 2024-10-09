@@ -1,4 +1,4 @@
-"""
+
 import matplotlib.pyplot as plt
 import numpy as np
 import base64
@@ -30,48 +30,4 @@ def main(args):
     return {
           "headers": { 'Content-Type': 'text/html; charset=utf-8' },
           "body": html_img
-       }
-"""
-
-class ClassTwo:
-    def _repr_html_(self):
-        ret = """
-        <h2>Click the button below:</h2>
-        <button type="button" onclick="youclicked()">Click Me</button>
-        <script>  
-        function youclicked(){  
-          alert("You Clicked!");  
-        }  
-        </script>
-        <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-        <script>
-          var xyValues = [{x:50, y:7}, {x:60, y:8}, {x:70, y:8}, {x:80, y:9}, {x:90, y:9}];
-
-          new Chart("myChart", {
-            type: "scatter",
-            data: {
-              datasets: [{
-                pointRadius: 4,
-                pointBackgroundColor: "rgb(0,0,255)",
-                data: xyValues
-              }]
-            },
-            options: {
-              legend: {display: false},
-              scales: {
-                xAxes: [{ticks: {min: 40, max:100}}],
-                yAxes: [{ticks: {min: 6, max:10}}],
-              }
-            }
-          });
-        </script>
-        """
-        return ret
-    
-def main(args):
-    
-    return {
-          "headers": { 'Content-Type': 'text/html; charset=utf-8' },
-          "body": ClassTwo()._repr_html_()
        }
