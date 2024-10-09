@@ -1,4 +1,3 @@
-"""
 import matplotlib.pyplot as plt
 import numpy as np
 import base64
@@ -31,18 +30,3 @@ def main(args):
           "headers": { 'Content-Type': 'text/html; charset=utf-8' },
           "body": html_img
        }
-
-
-"""
-
-import plotly.express as px
-
-def main(args):
-
-    fig = px.scatter(x=range(10), y=range(10))
-    html_string = fig.to_html(full_html=True)
-
-    return {
-        "headers": { 'Content-Type': 'text/html; charset=utf-8' },
-        "body": html_string
-    }
