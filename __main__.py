@@ -1,4 +1,4 @@
-"""
+
 import matplotlib.pyplot as plt
 import numpy as np
 import base64
@@ -25,7 +25,7 @@ def main(args):
     buf.close()
 
     # Create an HTML image tag
-    html_img = f'<img src="data:image/png;base64,{image_base64}" alt="Sine Wave Plot" width="300"/>'
+    html_img = f'<img src="data:image/png;base64,{image_base64}" alt="Sine Wave Plot" width="100%"/>'
 
     return {
           "headers": { 'Content-Type': 'text/html; charset=utf-8' },
@@ -35,7 +35,7 @@ def main(args):
 
 def main(args):
 
-    html = """
+    html = '
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -76,9 +76,10 @@ def main(args):
         </script>
     </body>
     </html>
-    """
+    '
     
     return {
           "headers": { 'Content-Type': 'text/html; charset=utf-8' },
           "body": html
        }
+"""
